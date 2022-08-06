@@ -14,7 +14,7 @@ public class Pregunta {
     private String id;
     private String coachId;
     private String fecha;
-    private String nombrePregunta;
+    private String pregunta;
     private String areaConocimiento;
     private String tipoPregunta;
     private Set<Opcion> opciones;
