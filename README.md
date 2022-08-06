@@ -1,3 +1,17 @@
+# Visión General
+
+Aplicación web de preguntas y respuestas donde se evalúan conocimientos teóricos por áreas de conocimientos, además de la recopilación de preguntas que permiten generar un banco alimentado por ciertos coaches.
+
+## Objetivos
+
+- Crear un aplicativo web usando programación reactiva y funcional para la recopilación de preguntas y repuestas; y a su vez calificar automáticamente evaluaciones teóricas. 
+- Implementar una arquitectura apropiada utilizando los conceptos aprendidos durante el training que permitan aplicar buenas prácticas de programación.
+- Emplear metodologías ágiles SCRUM planificando de forma efectiva la realización y finalización del proyecto.
+
+## Despliegue
+
+
+
 # Proyecto Base Implementando Clean Architecture
 
 ## Antes de Iniciar
