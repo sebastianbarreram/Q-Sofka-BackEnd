@@ -9,6 +9,6 @@ public interface PreguntaRepository {
 
     Flux<Pregunta> findAll();
 
-    Mono<Pregunta> findById();
+    Mono<Pregunta> findById(String id);
 
 }
