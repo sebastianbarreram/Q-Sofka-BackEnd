@@ -1,4 +1,4 @@
-package co.com.qsofkau.api;
+package co.com.qsofkau.api.usuario;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,9 +12,8 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 @Configuration
 public class RouterRest {
 @Bean
-public RouterFunction<ServerResponse> routerFunction(Handler handler) {
-    return route(GET("/api/usecase/path"), handler::listenGETUseCase)
-    .andRoute(POST("/api/usecase/otherpath"), handler::listenPOSTUseCase).and(route(GET("/api/otherusercase/path"), handler::listenGETOtherUseCase));
-
+public RouterFunction<ServerResponse> routerFunction(HandlerUsuario handler) {
+    return route(GET("/api/usuario/{id}"), handler::listenGETEncontrarUsuarioPorId)
+    .andRoute(POST("/api/usuario"), handler::listenPOSTCrearUsuarioUseCase);
     }
 }
