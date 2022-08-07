@@ -16,6 +16,7 @@ public class Pregunta {
     private String fecha;
     private String pregunta;
     private String areaConocimiento;
+    private String descriptor;
     private String tipoPregunta;
     private Set<Opcion> opciones;
 }
