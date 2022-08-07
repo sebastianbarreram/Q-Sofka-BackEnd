@@ -12,7 +12,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 public class PreguntaRouterRest {
 
     @Bean
-    public RouterFunction<ServerResponse> routerFunction(PreguntaHandler preguntaHandler){
+    public RouterFunction<ServerResponse> routerFunctionPregunta(PreguntaHandler preguntaHandler){
         return route(POST("api/pregunta/guardar"), preguntaHandler::POSTGuardarPreguntaUseCase)
                 .and(route(GET("api/pregunta/listar"), preguntaHandler::GETListarPreguntasUseCase))
                 .and(route(GET("api/pregunta/listar/{id}"), preguntaHandler::GETListarPreguntaConIdUseCase))

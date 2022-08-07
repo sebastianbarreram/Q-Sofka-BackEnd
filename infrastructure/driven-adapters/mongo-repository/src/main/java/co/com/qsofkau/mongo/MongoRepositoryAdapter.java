@@ -1,21 +1,19 @@
-package co.com.qsofkau.mongo;
+/*package co.com.qsofkau.mongo;
 
+import co.com.qsofkau.model.pregunta.Pregunta;
+import co.com.qsofkau.model.pregunta.gateways.PreguntaRepository;
 import co.com.qsofkau.mongo.helper.AdapterOperations;
+import co.com.qsofkau.mongo.pregunta.PreguntaDocument;
 import org.reactivecommons.utils.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MongoRepositoryAdapter extends AdapterOperations<Object/* change for domain model */, Object/* change for adapter model */, String, MongoDBRepository>
-// implements ModelRepository from domain
+public class MongoRepositoryAdapter extends AdapterOperations<Pregunta, PreguntaDocument, String, MongoDBRepository>
+ implements PreguntaRepository
 {
 
     public MongoRepositoryAdapter(MongoDBRepository repository, ObjectMapper mapper) {
-        /**
-         *  Could be use mapper.mapBuilder if your domain model implement builder pattern
-         *  super(repository, mapper, d -> mapper.mapBuilder(d,ObjectModel.ObjectModelBuilder.class).build());
-         *  Or using mapper.map with the class of the object model
-         */
-        super(repository, mapper, d -> mapper.map(d, Object.class/* change for domain model */));
+
+        super(repository, mapper, d -> mapper.map(d, Pregunta.class));
     }
-}
+}*/

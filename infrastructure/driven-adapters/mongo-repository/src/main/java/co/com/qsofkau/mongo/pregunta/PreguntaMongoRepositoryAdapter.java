@@ -4,7 +4,9 @@ import co.com.qsofkau.model.pregunta.Pregunta;
 import co.com.qsofkau.model.pregunta.gateways.PreguntaRepository;
 import co.com.qsofkau.mongo.helper.AdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PreguntaMongoRepositoryAdapter extends AdapterOperations<Pregunta, PreguntaDocument, String, PreguntaMongoDBRepository>
 implements PreguntaRepository
 {
