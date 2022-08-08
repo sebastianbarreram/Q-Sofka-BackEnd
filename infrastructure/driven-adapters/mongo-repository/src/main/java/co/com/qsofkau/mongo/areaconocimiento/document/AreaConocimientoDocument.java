@@ -1,6 +1,6 @@
 package co.com.qsofkau.mongo.areaconocimiento.document;
 
-import co.com.qsofkau.model.descriptor.Descriptor;
+import co.com.qsofkau.model.areaconocimiento.Descriptor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;

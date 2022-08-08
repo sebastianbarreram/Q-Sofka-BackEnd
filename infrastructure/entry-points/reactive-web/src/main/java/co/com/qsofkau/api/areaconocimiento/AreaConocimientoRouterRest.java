@@ -16,6 +16,6 @@ public class AreaConocimientoRouterRest {
     public RouterFunction<ServerResponse> routerFunction(AreaConocimientoHandler areaConocimientoHandler) {
         return route(POST("api/area/conocimiento/guardar"), areaConocimientoHandler::POSTGuardarAreaConocimientoUseCase)
                 .and(route(GET("api/area/conocimiento/listar"), areaConocimientoHandler::GETListarAreasConocimientoUseCase))
-                .and(route(GET("api/area/conocimiento/descriptores/listar/{id}"), areaConocimientoHandler::GETListarAreasConocimientoUseCase));
+                .and(route(GET("api/area/conocimiento/descriptores/listar/{id}"), areaConocimientoHandler::GETListarDescriptoresUseCase));
     }
 }
