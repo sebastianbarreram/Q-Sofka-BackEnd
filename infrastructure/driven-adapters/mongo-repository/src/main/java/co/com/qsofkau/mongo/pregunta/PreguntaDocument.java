@@ -18,8 +18,8 @@ public class PreguntaDocument {
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaActualizacion;
     private String pregunta;
-    private String areaConocimientoId;
-    private String descriptorId;
+    private String areaConocimiento;
+    private String descriptor;
     private String tipoPregunta;
     private Set<Opcion> opciones;
 }
