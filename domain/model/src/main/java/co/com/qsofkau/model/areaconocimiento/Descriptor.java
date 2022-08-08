@@ -10,5 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Descriptor {
+    private String idDescriptor;
     private String nombre;
 }

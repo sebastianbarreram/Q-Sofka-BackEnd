@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
@@ -13,10 +14,10 @@ import java.util.Set;
 public class Pregunta {
     private String id;
     private String coachId;
-    private String fecha;
+    private LocalDateTime fecha;
     private String pregunta;
-    private String areaConocimiento;
-    private String descriptor;
+    private String areaConocimientoId;
+    private String descriptorId;
     private String tipoPregunta;
     private Set<Opcion> opciones;
 }
