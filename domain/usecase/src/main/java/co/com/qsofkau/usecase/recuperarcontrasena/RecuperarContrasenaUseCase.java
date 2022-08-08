@@ -13,14 +13,18 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import co.com.qsofkau.model.usuario.Usuario;
 import co.com.qsofkau.model.usuario.gateways.UsuarioRepository;
 
 @RequiredArgsConstructor
 public class RecuperarContrasenaUseCase {
     private final UsuarioRepository usuarioRepository; 
-    public Flux<Usuario> recuperarContrasena(){								
+    private String numeros = "0123456789";
+	private String mayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	private String minusculas = "abcdefghijklmnopqrstuvwxyz";
+
+    public Mono<Usuario> recuperarContrasena(String id){								
 		Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "465");
@@ -35,15 +39,24 @@ public class RecuperarContrasenaUseCase {
             }
         });
 		
+        String password = getRandom(mayusculas, 2)+
+        getRandom(minusculas, 4)+
+        getRandom(numeros,1)+
+        getRandom(mayusculas, 1)+
+        getRandom(minusculas, 1);
+        System.out.println(password);
+        Usuario usuario = usuarioRepository.findById(id).toFuture().join();
+        usuario.setContrasena(password);
+
 		try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("memelopersteam@gmail.com"));
             message.setRecipients(
-                Message.RecipientType.TO, InternetAddress.parse("sebama96@gmail.com"));
+                Message.RecipientType.TO, InternetAddress.parse(usuario.getCorreo()));
             message.setSubject("Mail Subject");
             
             // String msg = "This is my first email using JavaMailer";
-            String msg = "This is my <b style='color:red;'>bold-red email</b> using JavaMailer <h1>Esto manda hasta html</h1>";
+            String msg = "<h2>Su nueva contraseña es:</h2><h1>"+password+"</h1>";
             
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             mimeBodyPart.setContent(msg, "text/html; charset=utf-8");
@@ -59,9 +72,15 @@ public class RecuperarContrasenaUseCase {
 			
 			System.out.println("Exception message " + e.getMessage());
 		}
+        return usuarioRepository.save(usuario);
+	}
 
-
-        return usuarioRepository.findAll();
+    private String getRandom(String key, int length) {
+		String random = "";
+		for (int i = 0; i < length; i++) {
+			random+=(key.charAt((int)(Math.random() * key.length())));
+		}
+		return random;
 	}
     
 }
