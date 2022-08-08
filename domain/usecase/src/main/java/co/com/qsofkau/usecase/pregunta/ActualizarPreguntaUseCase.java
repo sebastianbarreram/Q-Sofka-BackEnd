@@ -5,6 +5,8 @@ import co.com.qsofkau.model.pregunta.gateways.PreguntaRepository;
 import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
+
 @RequiredArgsConstructor
 public class ActualizarPreguntaUseCase {
 
@@ -12,6 +14,7 @@ public class ActualizarPreguntaUseCase {
 
     public Mono<Pregunta> actualizarPregunta(String id, Pregunta pregunta){
         pregunta.setId(id);
+        pregunta.setFechaActualizacion(LocalDateTime.now());
         return preguntaRepository.save(pregunta);
     }
 }
