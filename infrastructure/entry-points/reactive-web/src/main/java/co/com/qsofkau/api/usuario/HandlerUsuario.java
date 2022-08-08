@@ -31,11 +31,11 @@ public class HandlerUsuario {
                 .body(encontrarUsuarioPorIdUseCase.encontrarUsuarioPorId(usuarioId),Usuario.class);
     }
 
-    // public Mono<ServerResponse> listenGETRecuperarContrasena(ServerRequest serverRequest){
-    //     // var usuarioId=serverRequest.pathVariable("id");
-    //     return ServerResponse.ok()
-    //             .contentType(MediaType.APPLICATION_JSON)
-    //             .body(recuperarContrasenaUseCase.recuperarContrasena(),Usuario.class);
-    // }
+    public Mono<ServerResponse> listenGETRecuperarContrasena(ServerRequest serverRequest){
+        //var usuarioId=serverRequest.pathVariable("id");
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(recuperarContrasenaUseCase.recuperarContrasena(),Usuario.class);
+    }
 
 }
