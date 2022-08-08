@@ -1,18 +1,20 @@
-package co.com.qsofkau.model.areaconocimiento;
+package co.com.qsofkau.mongo.areaconocimiento.document;
+
 import co.com.qsofkau.model.descriptor.Descriptor;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
+@Document
 @Data
-@Builder(toBuilder = true)
 @NoArgsConstructor
-@AllArgsConstructor
-public class AreaConocimiento {
+public class AreaConocimientoDocument {
+    @Id
     private String id;
     private String nombreAreaConocimiento;
     private List<Descriptor> descriptores;
+    
 }

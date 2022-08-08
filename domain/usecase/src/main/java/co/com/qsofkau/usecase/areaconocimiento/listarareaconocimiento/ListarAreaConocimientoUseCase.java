@@ -1,16 +1,15 @@
-package co.com.qsofkau.usecase.areaconocimiento;
+package co.com.qsofkau.usecase.areaconocimiento.listarareaconocimiento;
 
 import co.com.qsofkau.model.areaconocimiento.AreaConocimiento;
 import co.com.qsofkau.model.areaconocimiento.gateways.AreaConocimientoRepository;
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 @RequiredArgsConstructor
-public class GuardarAreaConocimientoUseCase {
-
+public class ListarAreaConocimientoUseCase {
     private final AreaConocimientoRepository areaConocimientoRepository;
 
-    public Mono<AreaConocimiento> guardarAreaConocimiento(AreaConocimiento areaConocimiento){
-        return areaConocimientoRepository.save(areaConocimiento);
+    public Flux<AreaConocimiento> listarAreaConocmiento() {
+        return areaConocimientoRepository.findAll();
     }
 }
