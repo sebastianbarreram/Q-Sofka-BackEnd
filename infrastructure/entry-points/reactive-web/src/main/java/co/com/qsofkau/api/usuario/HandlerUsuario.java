@@ -1,8 +1,8 @@
 package co.com.qsofkau.api.usuario;
 
 import co.com.qsofkau.model.usuario.Usuario;
-import co.com.qsofkau.usecase.crearusuario.CrearUsuarioUseCase;
-import co.com.qsofkau.usecase.encontrarusuarioporid.EncontrarUsuarioPorIdUseCase;
+import co.com.qsofkau.usecase.usuario.crearusuario.CrearUsuarioUseCase;
+import co.com.qsofkau.usecase.usuario.encontrarusuarioporid.EncontrarUsuarioPorIdUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
