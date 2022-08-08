@@ -16,8 +16,8 @@ public class Pregunta {
     private String coachId;
     private LocalDateTime fecha;
     private String pregunta;
-    private String areaConocimientoId;
-    private String descriptorId;
+    private String areaConocimiento;
+    private String descriptor;
     private String tipoPregunta;
     private Set<Opcion> opciones;
 }
