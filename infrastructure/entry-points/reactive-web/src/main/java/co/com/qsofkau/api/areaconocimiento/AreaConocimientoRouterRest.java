@@ -13,7 +13,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @Configuration
 public class AreaConocimientoRouterRest {
     @Bean
-    public RouterFunction<ServerResponse> routerFunction(AreaConocimientoHandler areaConocimientoHandler) {
+    public RouterFunction<ServerResponse> routerFunctionAreaConocimiento(AreaConocimientoHandler areaConocimientoHandler) {
         return route(POST("api/area/conocimiento/guardar"), areaConocimientoHandler::POSTGuardarAreaConocimientoUseCase)
                 .and(route(GET("api/area/conocimiento/listar"), areaConocimientoHandler::GETListarAreasConocimientoUseCase))
                 .and(route(GET("api/area/conocimiento/descriptores/listar/{id}"), areaConocimientoHandler::GETListarDescriptoresUseCase));
