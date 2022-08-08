@@ -1,8 +1,9 @@
 package co.com.qsofkau.api.usuario;
 
 import co.com.qsofkau.model.usuario.Usuario;
-import co.com.qsofkau.usecase.crearusuario.CrearUsuarioUseCase;
-import co.com.qsofkau.usecase.encontrarusuarioporid.EncontrarUsuarioPorIdUseCase;
+import co.com.qsofkau.usecase.usuario.crearusuario.CrearUsuarioUseCase;
+import co.com.qsofkau.usecase.usuario.encontrarusuarioporid.EncontrarUsuarioPorIdUseCase;
+import co.com.qsofkau.usecase.usuario.encontrarusuariopornombreusuario.EncontrarUsuarioPorNombreUsuarioUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,8 @@ public class HandlerUsuario {
     private final CrearUsuarioUseCase crearUsuarioUseCase;
     private final EncontrarUsuarioPorIdUseCase encontrarUsuarioPorIdUseCase;
 
+    private final EncontrarUsuarioPorNombreUsuarioUseCase encontrarUsuarioPorNombreUsuarioUseCase;
+
     public Mono<ServerResponse> listenPOSTCrearUsuarioUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Usuario.class)
                 .flatMap(element -> ServerResponse.ok()
@@ -27,5 +30,12 @@ public class HandlerUsuario {
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(encontrarUsuarioPorIdUseCase.encontrarUsuarioPorId(usuarioId),Usuario.class);
+    }
+
+    public Mono<ServerResponse> listenGETEncontrarUsuarioPorNombreUsuario(ServerRequest serverRequest){
+        var nombreUsuario=serverRequest.pathVariable("nombreusuario");
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(encontrarUsuarioPorNombreUsuarioUseCase.encontrarUsuarioPorNombre(nombreUsuario),Usuario.class);
     }
 }

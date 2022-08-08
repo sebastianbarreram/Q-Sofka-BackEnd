@@ -1,4 +1,4 @@
-package co.com.qsofkau.usecase.crearusuario;
+package co.com.qsofkau.usecase.usuario.encontrarusuarioporid;
 
 import co.com.qsofkau.model.usuario.Usuario;
 import co.com.qsofkau.model.usuario.gateways.UsuarioRepository;
@@ -6,9 +6,9 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class CrearUsuarioUseCase {
+public class EncontrarUsuarioPorIdUseCase {
     private final UsuarioRepository usuarioRepository;
-    public Mono<Usuario> crearUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);
+    public Mono<Usuario> encontrarUsuarioPorId(String id) {
+        return usuarioRepository.findById(id);
     }
 }
