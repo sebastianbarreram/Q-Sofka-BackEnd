@@ -15,7 +15,6 @@ public class PreguntaDocument {
     @Id
     private String id;
     private String coachId;
-    private LocalDateTime fechaCreacion;
     private LocalDateTime fechaActualizacion;
     private String pregunta;
     private String areaConocimiento;

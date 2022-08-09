@@ -14,7 +14,6 @@ import java.util.Set;
 public class Pregunta {
     private String id;
     private String coachId;
-    private LocalDateTime fechaCreacion;
     private LocalDateTime fechaActualizacion;
     private String pregunta;
     private String areaConocimiento;
