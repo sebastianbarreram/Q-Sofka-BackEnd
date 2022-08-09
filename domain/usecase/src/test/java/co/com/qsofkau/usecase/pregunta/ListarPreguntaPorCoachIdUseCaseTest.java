@@ -14,20 +14,26 @@ import reactor.test.StepVerifier;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
-class ListarPreguntaPorCoachIdUseCaseTest {
 
-    @Mock
-    PreguntaRepository repository;
+
+@ExtendWith(MockitoExtension.class)
+
+public class ListarPreguntaPorCoachIdUseCaseTest {
+
 
     @InjectMocks
     ListarPreguntaPorCoachIdUseCase useCase;
 
+
+    @Mock
+    PreguntaRepository repository;
+
     @Test
-    public void consultar_pregunta_exiotosa(){
+    public void listar_pregunta_por_coachid_exitoso(){
         //arrange
         Opcion opcion1 = new Opcion("verdadero", true);
         Opcion opcion2 = new Opcion("falso", false);
@@ -44,10 +50,14 @@ class ListarPreguntaPorCoachIdUseCaseTest {
                 opciones
         );
 
+
         when(repository.findByCoachId("c1")).thenReturn(Flux.just(pregunta));
 
-
+        StepVerifier.create(useCase.listarPorCoachId(pregunta.getCoachId()))
+                .expectNext(pregunta)
+                .expectComplete()
+                .verify();
     }
 
-
 }
+

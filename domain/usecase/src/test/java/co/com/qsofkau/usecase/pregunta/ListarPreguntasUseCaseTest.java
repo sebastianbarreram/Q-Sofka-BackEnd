@@ -38,7 +38,7 @@ class ListarPreguntasUseCaseTest {
                 "p1",
                 "c1",
                 LocalDateTime.now(),
-                LocalDateTime.now(),
+
                 "pregunta1",
                 "area conocimiento",
                 "descriptor",
@@ -49,7 +49,6 @@ class ListarPreguntasUseCaseTest {
         Pregunta pregunta2 = new Pregunta(
                 "p2",
                 "c2",
-                LocalDateTime.now(),
                 LocalDateTime.now(),
                 "pregunta2",
                 "area conocimiento",

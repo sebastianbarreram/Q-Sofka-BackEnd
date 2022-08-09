@@ -20,6 +20,7 @@ public class PreguntaHandler {
     private final ListarPreguntaConIdUseCase listarPreguntaConIdUseCase;
 
     private final ActualizarPreguntaUseCase actualizarPreguntaUseCase;
+    private final EliminarPreguntaUseCase eliminarPreguntaUseCase;
 
     private final ListarPreguntaPorCoachIdUseCase listarPreguntaPorCoachIdUseCase;
 
@@ -49,6 +50,12 @@ public class PreguntaHandler {
                         .bodyValue(result));
     }
 
+    public Mono<ServerResponse> listenDELETEPreguntaUseCase(ServerRequest serverRequest) {
+        var id = serverRequest.pathVariable("id");
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(eliminarPreguntaUseCase.eliminarPregunta(id), Pregunta.class);
+    }
 
     public Mono<ServerResponse>  GETListarPreguntaPorCoachId(ServerRequest serverRequest) {
         var id = serverRequest.pathVariable("id");
