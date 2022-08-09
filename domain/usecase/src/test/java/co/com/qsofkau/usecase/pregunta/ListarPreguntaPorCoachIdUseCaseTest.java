@@ -12,58 +12,44 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Set;
-
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
+
 @ExtendWith(MockitoExtension.class)
-class ListarPreguntasUseCaseTest {
+
+public class ListarPreguntaPorCoachIdUseCaseTest {
 
     @InjectMocks
-    ListarPreguntasUseCase useCase;
+    ListarPreguntaPorCoachIdUseCase useCase;
 
     @Mock
     PreguntaRepository repository;
 
     @Test
-    public void listar_preguntas_test(){
-
+    public void listar_pregunta_por_coachid_exitoso(){
+        //arrange
         Opcion opcion1 = new Opcion("verdadero", true);
         Opcion opcion2 = new Opcion("falso", false);
         Set<Opcion> opciones = Set.of(opcion1, opcion2);
 
-        Pregunta pregunta1 = new Pregunta(
+        Pregunta pregunta = new Pregunta(
                 "p1",
                 "c1",
                 LocalDateTime.now(),
-
-                "pregunta1",
+                "pregunta",
                 "area conocimiento",
                 "descriptor",
                 "tipo pregunta",
                 opciones
         );
+        when(repository.findByCoachId("c1")).thenReturn(Flux.just(pregunta));
 
-        Pregunta pregunta2 = new Pregunta(
-                "p2",
-                "c2",
-                LocalDateTime.now(),
-                "pregunta2",
-                "area conocimiento",
-                "descriptor",
-                "tipo pregunta",
-                opciones
-        );
-
-        when(repository.findAll()).thenReturn(Flux.fromIterable(List.of(pregunta1,pregunta2)));
-
-        StepVerifier.create(useCase.listarPreguntas())
-                .expectNext(pregunta1)
-                .expectNext(pregunta2)
+        StepVerifier.create(useCase.listarPorCoachId(pregunta.getCoachId()))
+                .expectNext(pregunta)
                 .expectComplete()
                 .verify();
     }
+
 
 }

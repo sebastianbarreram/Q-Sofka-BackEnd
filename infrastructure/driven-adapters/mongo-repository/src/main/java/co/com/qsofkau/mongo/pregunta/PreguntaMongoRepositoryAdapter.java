@@ -23,10 +23,13 @@ implements PreguntaRepository
                 .findAll()
                 .filter(preguntaDocument -> preguntaDocument.getCoachId().equals(id))
                 .map(d -> mapper.map(d, Pregunta.class));
+
     }
 
     @Override
     public Mono<Void> delete(String id) {
         return repository.deleteById(id);
+
+
     }
 }
