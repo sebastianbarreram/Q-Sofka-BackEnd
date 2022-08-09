@@ -19,16 +19,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class GuardarPreguntaUseCaseTest {
+class ListarPreguntaConIdUseCaseTest {
 
     @InjectMocks
-    GuardarPreguntaUseCase useCase;
+    ListarPreguntaConIdUseCase useCase;
 
     @Mock
     PreguntaRepository repository;
 
     @Test
-    public void guardar_pregunta_test(){
+    public void listar_pregunta_con_id_test(){
 
         Opcion opcion1 = new Opcion("verdadero", true);
         Opcion opcion2 = new Opcion("falso", false);
@@ -42,15 +42,15 @@ class GuardarPreguntaUseCaseTest {
                 "pregunta",
                 "area conocimiento",
                 "descriptor",
-                "tipo pregunta", opciones
+                "tipo pregunta",
+                opciones
         );
 
-        when(repository.save(Mockito.any(Pregunta.class))).thenReturn(Mono.just(pregunta));
+        when(repository.findById(Mockito.any(String.class))).thenReturn(Mono.just(pregunta));
 
-        StepVerifier.create(useCase.guardarPregunta(pregunta))
+        StepVerifier.create(useCase.listarPreguntaConId(pregunta.getId()))
                 .expectNext(pregunta)
                 .expectComplete()
                 .verify();
     }
-
 }
