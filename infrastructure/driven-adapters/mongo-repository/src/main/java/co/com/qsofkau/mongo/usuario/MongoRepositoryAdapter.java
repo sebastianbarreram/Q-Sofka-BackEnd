@@ -5,6 +5,7 @@ import co.com.qsofkau.model.usuario.gateways.UsuarioRepository;
 import co.com.qsofkau.mongo.helper.AdapterOperations;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Mono;
 
 @Repository
 public class MongoRepositoryAdapter extends AdapterOperations<Usuario, UsuarioDocument, String, UsuarioMongoDBRepository>
@@ -19,4 +20,5 @@ implements UsuarioRepository
          */
         super(repository, mapper, d -> mapper.map(d, Usuario.class));
     }
+
 }

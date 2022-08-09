@@ -1,14 +1,15 @@
-package co.com.qsofkau.usecase.crearusuario;
+package co.com.qsofkau.usecase.listarusuarios;
 
 import co.com.qsofkau.model.usuario.Usuario;
 import co.com.qsofkau.model.usuario.gateways.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
-import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 @RequiredArgsConstructor
-public class CrearUsuarioUseCase {
+public class ListarUsuariosUseCase {
     private final UsuarioRepository usuarioRepository;
-    public Mono<Usuario> crearUsuario(Usuario usuario) {
-        return usuarioRepository.save(usuario);
+
+    public Flux<Usuario> listarUsuarios() {
+        return usuarioRepository.findAll();
     }
 }
