@@ -1,10 +1,7 @@
 package co.com.qsofkau.api.pregunta;
 
 import co.com.qsofkau.model.pregunta.Pregunta;
-import co.com.qsofkau.usecase.pregunta.ActualizarPreguntaUseCase;
-import co.com.qsofkau.usecase.pregunta.GuardarPreguntaUseCase;
-import co.com.qsofkau.usecase.pregunta.ListarPreguntaConIdUseCase;
-import co.com.qsofkau.usecase.pregunta.ListarPreguntasUseCase;
+import co.com.qsofkau.usecase.pregunta.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -23,6 +20,8 @@ public class PreguntaHandler {
     private final ListarPreguntaConIdUseCase listarPreguntaConIdUseCase;
 
     private final ActualizarPreguntaUseCase actualizarPreguntaUseCase;
+
+    private final ListarPreguntaPorCoachIdUseCase listarPreguntaPorCoachIdUseCase;
 
     public Mono<ServerResponse> POSTGuardarPreguntaUseCase(ServerRequest serverRequest){
         return serverRequest.bodyToMono(Pregunta.class)
@@ -51,7 +50,9 @@ public class PreguntaHandler {
     }
 
 
-    public <T extends ServerResponse> Mono<T> GETListarPreguntaPorCoachId(ServerRequest serverRequest) {
-        return null;
+    public Mono<ServerResponse>  GETListarPreguntaPorCoachId(ServerRequest serverRequest) {
+        var id = serverRequest.pathVariable("id");
+        return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                .body(listarPreguntaPorCoachIdUseCase.listarPorCoachId(id), Pregunta.class);
     }
 }

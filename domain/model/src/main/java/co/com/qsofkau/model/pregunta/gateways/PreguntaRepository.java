@@ -11,4 +11,5 @@ public interface PreguntaRepository {
 
     Mono<Pregunta> findById(String id);
 
+    Flux<Pregunta> findByCoachId(String id);
 }
