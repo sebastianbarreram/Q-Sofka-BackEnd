@@ -9,6 +9,7 @@ import reactor.core.publisher.Mono;
 public class EncontrarUsuarioPorIdUseCase {
     private final UsuarioRepository usuarioRepository;
     public Mono<Usuario> encontrarUsuarioPorId(String id) {
+        System.out.println(id);
         return usuarioRepository.findById(id);
     }
 }

@@ -25,6 +25,7 @@ subprojects {
         testCompileOnly  "org.projectlombok:lombok:${lombokVersion}"
         testAnnotationProcessor  "org.projectlombok:lombok:${lombokVersion}"
         implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
+        implementation group: 'javax.mail', name: 'mail', version: '1.5.0-b01'
     }
 
     test.finalizedBy(project.tasks.jacocoTestReport)
