@@ -51,4 +51,7 @@ public class PreguntaHandler {
     }
 
 
+    public <T extends ServerResponse> Mono<T> GETListarPreguntaPorCoachId(ServerRequest serverRequest) {
+        return null;
+    }
 }
