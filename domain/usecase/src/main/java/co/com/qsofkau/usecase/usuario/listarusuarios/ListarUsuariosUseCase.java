@@ -1,4 +1,4 @@
-package co.com.qsofkau.usecase.listarusuarios;
+package co.com.qsofkau.usecase.usuario.listarusuarios;
 
 import co.com.qsofkau.model.usuario.Usuario;
 import co.com.qsofkau.model.usuario.gateways.UsuarioRepository;
