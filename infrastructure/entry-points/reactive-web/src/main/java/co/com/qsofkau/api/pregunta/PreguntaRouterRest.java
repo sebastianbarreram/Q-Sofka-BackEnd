@@ -18,6 +18,7 @@ public class PreguntaRouterRest {
                 .and(route(GET("api/pregunta/listar/{id}"), preguntaHandler::GETListarPreguntaConIdUseCase))
                 .and(route(PUT("api/pregunta/actualizar/{id}"), preguntaHandler::PUTActualizarPreguntaUseCase))
                 .and(route(GET("api/pregunta/coach/{id}"), preguntaHandler::GETListarPreguntaPorCoachId));
+                .and(route(DELETE("api/pregunta/{id}"),preguntaHandler::listenDELETEPreguntaUseCase));
 
     }
 }
