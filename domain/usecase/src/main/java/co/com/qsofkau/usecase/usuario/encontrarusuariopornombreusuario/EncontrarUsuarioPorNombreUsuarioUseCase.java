@@ -12,6 +12,7 @@ public class EncontrarUsuarioPorNombreUsuarioUseCase {
 
     private final UsuarioRepository usuarioRepository;
 
+    //TODO: cambiar nombre a encontrarUsuarioPorUsuario
     public Mono<Usuario> encontrarUsuarioPorNombre(String usuario){
         return usuarioRepository.findAll()
                 .filter(usuario1 -> usuario1.getUsuario().equals(usuario)).next();
