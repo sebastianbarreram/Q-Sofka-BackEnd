@@ -12,7 +12,6 @@ public class GuardarPreguntaUseCase {
     private final PreguntaRepository preguntaRepository;
 
     public Mono<Pregunta> guardarPregunta(Pregunta pregunta){
-        pregunta.setFechaCreacion(LocalDateTime.now());
         pregunta.setFechaActualizacion(LocalDateTime.now());
         return preguntaRepository.save(pregunta);
     }
