@@ -16,6 +16,7 @@ public class PreguntaRouterRest {
         return route(POST("api/pregunta/guardar"), preguntaHandler::POSTGuardarPreguntaUseCase)
                 .and(route(GET("api/pregunta/listar"), preguntaHandler::GETListarPreguntasUseCase))
                 .and(route(GET("api/pregunta/listar/{id}"), preguntaHandler::GETListarPreguntaConIdUseCase))
-                .and(route(PUT("api/pregunta/actualizar/{id}"), preguntaHandler::PUTActualizarPreguntaUseCase));
+                .and(route(PUT("api/pregunta/actualizar/{id}"), preguntaHandler::PUTActualizarPreguntaUseCase))
+                .and(route(DELETE("api/pregunta/{id}"),preguntaHandler::listenDELETEPreguntaUseCase));
     }
 }
