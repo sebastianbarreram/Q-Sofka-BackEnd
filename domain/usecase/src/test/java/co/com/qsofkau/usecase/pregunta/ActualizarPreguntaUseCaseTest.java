@@ -39,7 +39,6 @@ class ActualizarPreguntaUseCaseTest {
                 "p1",
                 "c1",
                 LocalDateTime.now(),
-                LocalDateTime.now(),
                 "pregunta antigua",
                 "area conocimiento",
                 "descriptor",

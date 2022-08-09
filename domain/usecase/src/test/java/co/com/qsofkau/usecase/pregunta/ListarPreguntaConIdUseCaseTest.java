@@ -38,7 +38,7 @@ class ListarPreguntaConIdUseCaseTest {
                 "p1",
                 "c1",
                 LocalDateTime.now(),
-                LocalDateTime.now(),
+
                 "pregunta",
                 "area conocimiento",
                 "descriptor",
