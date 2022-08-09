@@ -1,4 +1,4 @@
-package co.com.qsofkau.usecase.recuperarcontrasena;
+package co.com.qsofkau.usecase.usuario.recuperarcontrasena;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
