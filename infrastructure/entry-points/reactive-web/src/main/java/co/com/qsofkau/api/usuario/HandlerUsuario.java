@@ -1,9 +1,12 @@
 package co.com.qsofkau.api.usuario;
 
 import co.com.qsofkau.model.usuario.Usuario;
-import co.com.qsofkau.usecase.crearusuario.CrearUsuarioUseCase;
-import co.com.qsofkau.usecase.encontrarusuarioporid.EncontrarUsuarioPorIdUseCase;
-import co.com.qsofkau.usecase.recuperarcontrasena.RecuperarContrasenaUseCase;
+
+import co.com.qsofkau.usecase.usuario.crearusuario.CrearUsuarioUseCase;
+import co.com.qsofkau.usecase.usuario.encontrarusuarioporid.EncontrarUsuarioPorIdUseCase;
+import co.com.qsofkau.usecase.usuario.recuperarcontrasena.RecuperarContrasenaUseCase;
+import co.com.qsofkau.usecase.usuario.encontrarusuariopornombreusuario.EncontrarUsuarioPorNombreUsuarioUseCase;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -18,6 +21,8 @@ public class HandlerUsuario {
     private final EncontrarUsuarioPorIdUseCase encontrarUsuarioPorIdUseCase;
     private final RecuperarContrasenaUseCase recuperarContrasenaUseCase;
 
+    private final EncontrarUsuarioPorNombreUsuarioUseCase encontrarUsuarioPorNombreUsuarioUseCase;
+
     public Mono<ServerResponse> listenPOSTCrearUsuarioUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Usuario.class)
                 .flatMap(element -> ServerResponse.ok()
@@ -31,11 +36,20 @@ public class HandlerUsuario {
                 .body(encontrarUsuarioPorIdUseCase.encontrarUsuarioPorId(usuarioId),Usuario.class);
     }
 
+
     public Mono<ServerResponse> listenGETRecuperarContrasena(ServerRequest serverRequest){
         var usuarioId=serverRequest.pathVariable("id");
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(recuperarContrasenaUseCase.recuperarContrasena(usuarioId),Usuario.class);
+    }
+
+
+    public Mono<ServerResponse> listenGETEncontrarUsuarioPorNombreUsuario(ServerRequest serverRequest){
+        var nombreUsuario=serverRequest.pathVariable("nombreusuario");
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(encontrarUsuarioPorNombreUsuarioUseCase.encontrarUsuarioPorNombre(nombreUsuario),Usuario.class);
     }
 
 }
