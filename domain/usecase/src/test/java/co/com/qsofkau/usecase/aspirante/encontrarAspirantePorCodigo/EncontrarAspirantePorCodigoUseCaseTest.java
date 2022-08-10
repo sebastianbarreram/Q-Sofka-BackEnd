@@ -28,8 +28,8 @@ class EncontrarAspirantePorCodigoUseCaseTest {
 
     @Test
     void encontrarAspirantePorCodigo() {
-        Aspirante aspirante = new Aspirante("1","juan","duvanleal65@gmail.com",1,"aprobo","555-hhh");
-        Aspirante aspirante1 = new Aspirante("2","duvan","duvanleal96@gmail.com",1,"aprobo","552-xxx");
+        Aspirante aspirante = new Aspirante("1","juan","duvanleal65@gmail.com",1,0,0,"aprobo","555-hhh");
+        Aspirante aspirante1 = new Aspirante("2","duvan","duvanleal96@gmail.com",1,0,0,"aprobo","552-xxx");
         List<Aspirante> aspirantes = List.of(aspirante, aspirante1);
 
         when(repository.findAll()).thenReturn(Flux.fromIterable(aspirantes));

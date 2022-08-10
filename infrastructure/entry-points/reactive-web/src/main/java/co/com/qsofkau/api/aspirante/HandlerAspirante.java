@@ -36,9 +36,10 @@ public class HandlerAspirante {
 
     public Mono<ServerResponse> listenGETGenerarCodigo(ServerRequest serverRequest){
         var usuarioId=serverRequest.pathVariable("id");
-        return ServerResponse.ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(generarCodigoUseCase.generarCodigo(usuarioId),Aspirante.class);
+        return  encontrarAspirantePorIdUseCase.encontrarAspirantePorId(usuarioId)
+                .flatMap(element -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(generarCodigoUseCase.generarCodigo(element), Aspirante.class));
     }
 
     public Mono<ServerResponse> listenGETEncontrarAspirantePorCodigo(ServerRequest serverRequest){

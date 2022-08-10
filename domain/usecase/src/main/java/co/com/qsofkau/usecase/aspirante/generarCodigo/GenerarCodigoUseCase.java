@@ -24,7 +24,7 @@ public class GenerarCodigoUseCase {
     private String numeros = "0123456789";
     private final AspiranteRepository aspiranteRepository;
 
-    public Mono<Aspirante> generarCodigo(String id){
+    public Mono<Aspirante> generarCodigo(Aspirante aspirante){
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "465");
@@ -42,7 +42,7 @@ public class GenerarCodigoUseCase {
         String codigo = getRandom(mayusculas, 4)
         +"-"+getRandom(numeros, 4);
         System.out.println(codigo);
-        Aspirante aspirante = aspiranteRepository.findById(id).toFuture().join();
+        //Aspirante aspirante = aspiranteRepository.findById(id).toFuture().join();
         aspirante.setCodigoVerificacion(codigo);
 
         try {
