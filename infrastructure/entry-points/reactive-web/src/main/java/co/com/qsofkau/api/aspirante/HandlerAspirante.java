@@ -3,8 +3,8 @@ package co.com.qsofkau.api.aspirante;
 import co.com.qsofkau.model.aspirante.Aspirante;
 import co.com.qsofkau.usecase.aspirante.crearAspirante.CrearAspiranteUseCase;
 import co.com.qsofkau.usecase.aspirante.encontrarApirantePorId.EncontrarAspirantePorIdUseCase;
+import co.com.qsofkau.usecase.aspirante.encontrarAspirantePorCodigo.EncontrarAspirantePorCodigoUseCase;
 import co.com.qsofkau.usecase.aspirante.generarCodigo.GenerarCodigoUseCase;
-import co.com.qsofkau.usecase.aspirante.encontrarAspirantePorNombre.EncontrarAspirantePorNombreUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ public class HandlerAspirante {
     private final CrearAspiranteUseCase crearAspiranteUseCase;
     private final EncontrarAspirantePorIdUseCase encontrarAspirantePorIdUseCase;
     private final GenerarCodigoUseCase generarCodigoUseCase;
-    private final EncontrarAspirantePorNombreUseCase encontrarAspirantePorNombreUseCase;
+    private final EncontrarAspirantePorCodigoUseCase encontrarAspirantePorCodigoUseCase;
 
 
     public Mono<ServerResponse> listenPOSTCrearAspiranteUseCase(ServerRequest serverRequest) {
@@ -42,10 +42,10 @@ public class HandlerAspirante {
     }
 
     public Mono<ServerResponse> listenGETEncontrarAspirantePorNombre(ServerRequest serverRequest){
-        var nombreAspirante=serverRequest.pathVariable("nombreAspirante");
+        var codigo=serverRequest.pathVariable("codigo");
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(encontrarAspirantePorNombreUseCase.encontrarAspirantePorNombre(nombreAspirante),Aspirante.class);
+                .body(encontrarAspirantePorCodigoUseCase.encontrarAspirantePorCodigo(codigo),Aspirante.class);
     }
 
 }
