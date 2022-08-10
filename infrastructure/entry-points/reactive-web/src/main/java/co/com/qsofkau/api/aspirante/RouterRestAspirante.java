@@ -16,6 +16,6 @@ public class RouterRestAspirante {
         return route(GET("/api/aspirante/{id}"), handler::listenGETEncontrarAspirantePorId)
                 .andRoute(POST("/api/aspirante"), handler::listenPOSTCrearAspiranteUseCase)
                 .andRoute(GET("/api/aspirante/codigo/{id}"), handler::listenGETGenerarCodigo)
-                .andRoute(GET("/api/aspirante/comenzar/{codigo}"), handler::listenGETEncontrarAspirantePorNombre);
+                .andRoute(GET("/api/aspirante/comenzar/{codigo}"), handler::listenGETEncontrarAspirantePorCodigo);
     }
 }

@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Opcion {
     private String nombre;
-    private Boolean esCorrecto;
+        private Boolean esCorrecto;
 }
