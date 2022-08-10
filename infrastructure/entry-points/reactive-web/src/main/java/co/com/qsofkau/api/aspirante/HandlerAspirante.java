@@ -34,10 +34,10 @@ public class HandlerAspirante {
     }
 
     public Mono<ServerResponse> listenGETGenerarCodigo(ServerRequest serverRequest){
-        // var usuarioId=serverRequest.pathVariable("id");
+        var usuarioId=serverRequest.pathVariable("id");
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
-                .body(generarCodigoUseCase.generarCodigo(),Aspirante.class);
+                .body(generarCodigoUseCase.generarCodigo(usuarioId),Aspirante.class);
     }
 
 }
