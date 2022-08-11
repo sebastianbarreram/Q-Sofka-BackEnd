@@ -20,6 +20,5 @@ public class RouterRestAspirante {
                 .andRoute(POST("/api/aspirante/enviar-resultados/{id}"), handler::listenPOSTEnviarResultadoEvaluacion)
                 .andRoute(GET("/api/aspirante/evaluacion/{id}"), handler::listenGETEncontrarPorEvaluacion)
                 .andRoute(POST("/api/aspirante/evaluacion/{id}"), handler::listenPOSTAsignarPuntajeUseCase);
-
     }
 }

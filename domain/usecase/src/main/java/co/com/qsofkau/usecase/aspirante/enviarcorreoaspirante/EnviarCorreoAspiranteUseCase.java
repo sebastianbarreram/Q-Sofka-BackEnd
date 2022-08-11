@@ -37,7 +37,8 @@ public class EnviarCorreoAspiranteUseCase {
 
         Aspirante aspirante = aspiranteRepository.findById(id).toFuture().join();
 
-        String mensajeEnviar = mensaje.getMensaje();
+        String mensajeEnviar = "<h2>" + mensaje.getNombre() +", tu valoracion fue de: "+ mensaje.getValoracion() +"% <br>\n" +
+                "    Buen trabajo,eres un candidato para: <br>" + mensaje.getFase() + "</h2>";
 
         try {
             Message message = new MimeMessage(session);

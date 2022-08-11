@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class Mensaje {
 
-    private String mensaje;
+    private String nombre;
+    private Integer valoracion;
+    private String fase;
 
 }
