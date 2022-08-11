@@ -16,6 +16,8 @@ public class AspiranteDocument {
     private String nombre;
     private String correo;
     private Integer nivel;
-    private String valoracion;
+    private Integer puntajePrueba1;
+    private Integer puntajePrueba2;
     private String codigoVerificacion;
+    private String evaluacionId;
 }

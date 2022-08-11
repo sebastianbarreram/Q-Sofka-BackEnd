@@ -13,15 +13,21 @@ import reactor.test.StepVerifier;
 
 import java.time.LocalDateTime;
 import java.util.Set;
+
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
+
 
 
 @ExtendWith(MockitoExtension.class)
 
 public class ListarPreguntaPorCoachIdUseCaseTest {
 
+
     @InjectMocks
     ListarPreguntaPorCoachIdUseCase useCase;
+
 
     @Mock
     PreguntaRepository repository;
@@ -43,6 +49,8 @@ public class ListarPreguntaPorCoachIdUseCaseTest {
                 "tipo pregunta",
                 opciones
         );
+
+
         when(repository.findByCoachId("c1")).thenReturn(Flux.just(pregunta));
 
         StepVerifier.create(useCase.listarPorCoachId(pregunta.getCoachId()))
@@ -51,5 +59,5 @@ public class ListarPreguntaPorCoachIdUseCaseTest {
                 .verify();
     }
 
-
 }
+

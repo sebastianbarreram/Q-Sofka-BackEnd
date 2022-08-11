@@ -34,11 +34,11 @@ public class RecuperarContrasenaUseCase {
 		props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 		Session session = Session.getInstance(props, new Authenticator() {
             @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
+            protected PasswordAuthentication getPasswordAuthentication() { //inicio de sesion
                 return new PasswordAuthentication("memelopersteam@gmail.com", "chnmkxkwkrzrauzs");
             }
         });
-		
+		//Lo que se va a enviar
         String password = getRandom(mayusculas, 2)+
         getRandom(minusculas, 4)+
         getRandom(numeros,1)+
@@ -48,16 +48,19 @@ public class RecuperarContrasenaUseCase {
         Usuario usuario = usuarioRepository.findById(id).toFuture().join();
         usuario.setContrasena(password);
 
+        //Enviar el menssaje
+        //Armado del correo
 		try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("memelopersteam@gmail.com"));
             message.setRecipients(
                 Message.RecipientType.TO, InternetAddress.parse(usuario.getCorreo()));
-            message.setSubject("Mail Subject");
+            message.setSubject("Mail Subject"); //Asunto del correo
             
             // String msg = "This is my first email using JavaMailer";
-            String msg = "<h2>Su nueva contraseña es:</h2><h1>"+password+"</h1>";
-            
+            String msg = "<h2>Su nueva contraseña es:</h2><h1>"+password+"</h1>"; //Cuerpo del correo
+
+            //No tocar de aquí pa abajo
             MimeBodyPart mimeBodyPart = new MimeBodyPart();
             mimeBodyPart.setContent(msg, "text/html; charset=utf-8");
             
