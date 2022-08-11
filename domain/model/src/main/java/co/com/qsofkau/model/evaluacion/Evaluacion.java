@@ -20,7 +20,7 @@ public class Evaluacion {
 
     public Evaluacion(List<Pregunta> preguntaList) {
         Collections.shuffle(preguntaList);
-        this.preguntaList1 = preguntaList.subList(0,1);
-        this.preguntaList2 = preguntaList.subList(1,2);
+        this.preguntaList1 = preguntaList.subList(0,15);
+        this.preguntaList2 = preguntaList.subList(15,30);
     }
 }
