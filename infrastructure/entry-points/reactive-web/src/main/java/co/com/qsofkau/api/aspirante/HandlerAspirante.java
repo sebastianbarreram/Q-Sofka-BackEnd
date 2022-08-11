@@ -1,6 +1,7 @@
 package co.com.qsofkau.api.aspirante;
 
 import co.com.qsofkau.model.aspirante.Aspirante;
+import co.com.qsofkau.usecase.aspirante.asignarpuntajeaspirante.AsignarPuntajeAspiranteUseCase;
 import co.com.qsofkau.usecase.aspirante.consultaraspiranteporevaluacionid.ConsultarAspirantePorEvaluacionIdUseCase;
 import co.com.qsofkau.usecase.aspirante.crearAspirante.CrearAspiranteUseCase;
 import co.com.qsofkau.usecase.aspirante.encontrarApirantePorId.EncontrarAspirantePorIdUseCase;
@@ -21,6 +22,7 @@ public class HandlerAspirante {
     private final GenerarCodigoUseCase generarCodigoUseCase;
     private final EncontrarAspirantePorCodigoUseCase encontrarAspirantePorCodigoUseCase;
     private final ConsultarAspirantePorEvaluacionIdUseCase consultarAspirantePorEvaluacionIdUseCase;
+    private final AsignarPuntajeAspiranteUseCase asignarPuntajeAspiranteUseCase;
 
     public Mono<ServerResponse> listenPOSTCrearAspiranteUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Aspirante.class)
@@ -55,5 +57,14 @@ public class HandlerAspirante {
         return ServerResponse.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(consultarAspirantePorEvaluacionIdUseCase.econtrarPorEvaluacionId(evaluacionId),Aspirante.class);
+    }
+
+    public Mono<ServerResponse> listenPOSTAsignarPuntajeUseCase(ServerRequest serverRequest) {
+        var evaluacionId=serverRequest.pathVariable("id");
+        return serverRequest.bodyToMono(Aspirante.class)
+                .map(aspirante -> aspirante.getPuntajePrueba1())
+                .flatMap(puntaje -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(asignarPuntajeAspiranteUseCase.asignarPuntaje(evaluacionId,puntaje), Aspirante.class));
     }
 }
