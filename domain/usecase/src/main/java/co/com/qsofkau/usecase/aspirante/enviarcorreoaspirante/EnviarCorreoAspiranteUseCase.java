@@ -56,7 +56,6 @@ public class EnviarCorreoAspiranteUseCase {
 
             Transport.send(message);
             System.out.println("Email Sent Successfully!!");
-
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
