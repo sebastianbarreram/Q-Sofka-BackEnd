@@ -1,6 +1,7 @@
 package co.com.qsofkau.api.aspirante;
 
 import co.com.qsofkau.model.aspirante.Aspirante;
+import co.com.qsofkau.usecase.aspirante.consultaraspiranteporevaluacionid.ConsultarAspirantePorEvaluacionIdUseCase;
 import co.com.qsofkau.usecase.aspirante.crearAspirante.CrearAspiranteUseCase;
 import co.com.qsofkau.usecase.aspirante.encontrarApirantePorId.EncontrarAspirantePorIdUseCase;
 import co.com.qsofkau.usecase.aspirante.encontrarAspirantePorCodigo.EncontrarAspirantePorCodigoUseCase;
@@ -19,7 +20,7 @@ public class HandlerAspirante {
     private final EncontrarAspirantePorIdUseCase encontrarAspirantePorIdUseCase;
     private final GenerarCodigoUseCase generarCodigoUseCase;
     private final EncontrarAspirantePorCodigoUseCase encontrarAspirantePorCodigoUseCase;
-
+    private final ConsultarAspirantePorEvaluacionIdUseCase consultarAspirantePorEvaluacionIdUseCase;
 
     public Mono<ServerResponse> listenPOSTCrearAspiranteUseCase(ServerRequest serverRequest) {
         return serverRequest.bodyToMono(Aspirante.class)
@@ -49,4 +50,10 @@ public class HandlerAspirante {
                 .body(encontrarAspirantePorCodigoUseCase.encontrarAspirantePorCodigo(codigo),Aspirante.class);
     }
 
+    public Mono<ServerResponse> listenGETEncontrarPorEvaluacion(ServerRequest serverRequest) {
+        var evaluacionId=serverRequest.pathVariable("id");
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(consultarAspirantePorEvaluacionIdUseCase.econtrarPorEvaluacionId(evaluacionId),Aspirante.class);
+    }
 }
