@@ -17,9 +17,9 @@ import java.util.Properties;
 @RequiredArgsConstructor
 public class EnviarCorreoAspiranteUseCase {
 
-    private AspiranteRepository aspiranteRepository;
+    private final AspiranteRepository aspiranteRepository;
 
-    public Mono<Mensaje> enviarCorreo(String id, String mensaje){
+    public Mono<Aspirante> enviarCorreo(String id, Mensaje mensaje){
 
         Properties properties = new Properties();
         properties.put("mail.smtp.host", "smtp.gmail.com");
@@ -37,7 +37,7 @@ public class EnviarCorreoAspiranteUseCase {
 
         Aspirante aspirante = aspiranteRepository.findById(id).toFuture().join();
 
-        String mensajeEnviar = mensaje;
+        String mensajeEnviar = mensaje.getMensaje();
 
         try {
             Message message = new MimeMessage(session);
@@ -60,7 +60,7 @@ public class EnviarCorreoAspiranteUseCase {
             System.out.println(e.getMessage());
         }
 
-        return Mono.just(new Mensaje(mensaje));
+        return aspiranteRepository.save(aspirante);
 
     }
 

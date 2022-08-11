@@ -56,10 +56,10 @@ public class HandlerAspirante {
 
     public Mono<ServerResponse> listenPOSTEnviarResultadoEvaluacion(ServerRequest serverRequest){
         var usuarioId=serverRequest.pathVariable("id");
-        return serverRequest.bodyToMono(Mensaje.class).log()
+        return serverRequest.bodyToMono(Mensaje.class)
                 .flatMap(element -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(enviarCorreoAspiranteUseCase.enviarCorreo(usuarioId, element.getMensaje()), Mensaje.class));
+                        .body(enviarCorreoAspiranteUseCase.enviarCorreo(usuarioId, element), Aspirante.class));
     }
 
 }
