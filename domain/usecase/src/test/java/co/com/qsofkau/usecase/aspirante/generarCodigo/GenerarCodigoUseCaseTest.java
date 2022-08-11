@@ -26,12 +26,12 @@ class GenerarCodigoUseCaseTest {
     AspiranteRepository repository;
     @Test
     void generarCodigo() {
-        Aspirante aspirante = new Aspirante("1","juan","duvanleal65@gmail.com",1,0,0,"aprobo","555-hhh");
+        Aspirante aspirante = new Aspirante("1","juan","duvanleal65@gmail.com",1,0,0,"555-hhh","555-hhh");
 
         when(repository.findById(Mockito.any(String.class))).thenReturn(Mono.just(aspirante));
         when(repository.save(Mockito.any(Aspirante.class))).thenReturn(Mono.just(aspirante));
 
-        StepVerifier.create(useCase.generarCodigo(aspirante.getCodigoVerificacion()))
+        StepVerifier.create(useCase.generarCodigo(aspirante))
                 .expectNext(aspirante)
                 .expectComplete()
                 .verify();

@@ -3,6 +3,8 @@ package co.com.qsofkau.api.aspirante;
 import co.com.qsofkau.model.aspirante.Aspirante;
 import co.com.qsofkau.model.aspirante.Mensaje;
 import co.com.qsofkau.model.usuario.Usuario;
+import co.com.qsofkau.usecase.aspirante.asignarpuntajeaspirante.AsignarPuntajeAspiranteUseCase;
+import co.com.qsofkau.usecase.aspirante.consultaraspiranteporevaluacionid.ConsultarAspirantePorEvaluacionIdUseCase;
 import co.com.qsofkau.usecase.aspirante.crearAspirante.CrearAspiranteUseCase;
 import co.com.qsofkau.usecase.aspirante.encontrarApirantePorId.EncontrarAspirantePorIdUseCase;
 import co.com.qsofkau.usecase.aspirante.encontrarAspirantePorCodigo.EncontrarAspirantePorCodigoUseCase;
@@ -24,6 +26,8 @@ public class HandlerAspirante {
     private final EncontrarAspirantePorCodigoUseCase encontrarAspirantePorCodigoUseCase;
 
     private final EnviarCorreoAspiranteUseCase enviarCorreoAspiranteUseCase;
+    private final ConsultarAspirantePorEvaluacionIdUseCase consultarAspirantePorEvaluacionIdUseCase;
+    private final AsignarPuntajeAspiranteUseCase asignarPuntajeAspiranteUseCase;
 
 
     public Mono<ServerResponse> listenPOSTCrearAspiranteUseCase(ServerRequest serverRequest) {
@@ -62,4 +66,20 @@ public class HandlerAspirante {
                         .body(enviarCorreoAspiranteUseCase.enviarCorreo(usuarioId, element), Aspirante.class));
     }
 
+
+    public Mono<ServerResponse> listenGETEncontrarPorEvaluacion(ServerRequest serverRequest) {
+        var evaluacionId=serverRequest.pathVariable("id");
+        return ServerResponse.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(consultarAspirantePorEvaluacionIdUseCase.econtrarPorEvaluacionId(evaluacionId),Aspirante.class);
+    }
+
+    public Mono<ServerResponse> listenPOSTAsignarPuntajeUseCase(ServerRequest serverRequest) {
+        var evaluacionId=serverRequest.pathVariable("id");
+        return serverRequest.bodyToMono(Aspirante.class)
+                .map(aspirante -> aspirante.getPuntajePrueba1())
+                .flatMap(puntaje -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(asignarPuntajeAspiranteUseCase.asignarPuntaje(evaluacionId,puntaje), Aspirante.class));
+    }
 }
