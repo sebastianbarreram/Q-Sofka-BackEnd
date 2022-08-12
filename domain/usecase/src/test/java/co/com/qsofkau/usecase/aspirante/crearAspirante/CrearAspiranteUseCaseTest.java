@@ -82,4 +82,20 @@ class CrearAspiranteUseCaseTest {
                 .expectComplete()
                 .verify();
     }
+
+    @Test
+    void verificarCorreoAspiranteCreado(){
+
+        Aspirante aspirante = Aspirante.builder().id("123").correo("123@gmail.com").build();
+        Evaluacion evaluacion = Evaluacion.builder().id("1234").build();
+        Aspirante aspiranteDespues = Aspirante.builder().id("1234").correo("123@gmail.com").build();
+                when(repository.save(Mockito.any(Aspirante.class))).thenReturn(Mono.just(aspirante));
+                 when(crearEvaluacion.crearEvaluacion()).thenReturn(Mono.just(evaluacion));
+                 when(generarCodigo.generarCodigo(Mockito.any(Aspirante.class))).thenReturn(Mono.just(aspiranteDespues));
+
+                StepVerifier.create(useCase.crearAspirante(aspirante))
+                        .expectNextMatches(aspiranteUno -> aspiranteUno.getCorreo().equals("123@gmail.com"))
+                        .expectComplete().verify();
+
+    }
 }
