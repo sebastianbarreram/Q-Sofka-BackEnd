@@ -10,7 +10,7 @@ Aplicación web de preguntas y respuestas donde se evalúan conocimientos teóri
 
 ## Despliegue
 
-
+ https://qsofkabackend.herokuapp.com
 
 # Proyecto Base Implementando Clean Architecture
 
