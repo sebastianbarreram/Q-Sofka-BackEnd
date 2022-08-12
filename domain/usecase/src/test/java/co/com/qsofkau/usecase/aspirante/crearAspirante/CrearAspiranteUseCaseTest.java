@@ -27,9 +27,10 @@ class CrearAspiranteUseCaseTest {
     AspiranteRepository repository;
     @Test
     void crearAspirante() {
-        Aspirante aspirante = new Aspirante("1","juan","duvanleal65@gmail.com",1,0,0,"aprobo","555-hhh");
+        Aspirante aspirante = new Aspirante("1","juan","duvanleal65@gmail.com",1,0,0,"555-hhh","555-hhh");
 
         when(repository.save(Mockito.any(Aspirante.class))).thenReturn(Mono.just(aspirante));
+
 
         StepVerifier.create(useCase.crearAspirante(aspirante))
                 .expectNext(aspirante)
