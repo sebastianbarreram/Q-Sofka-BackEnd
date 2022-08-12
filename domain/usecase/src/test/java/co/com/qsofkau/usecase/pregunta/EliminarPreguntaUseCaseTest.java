@@ -50,15 +50,12 @@ class EliminarPreguntaUseCaseTest {
                 "tipo pregunta", opciones
         );
 
-        when(repository.delete(Mockito.any(String.class))).thenReturn(Mono.just(pregunta));
+        when(repository.delete(Mockito.any(String.class))).thenReturn(Mono.empty());
 
         StepVerifier.create(useCase.eliminarPregunta("p2"))
                 .expectNext()
                 .expectComplete()
                 .verify();
-
-
-
 
     }
 }
