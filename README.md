@@ -11,6 +11,17 @@ Aplicación web de preguntas y respuestas donde se evalúan conocimientos teóri
 ## Despliegue
 
  https://qsofkabackend.herokuapp.com
+ 
+ ## Autores
+
+- [@sebastianbarreram](https://github.com/sebastianbarreram)
+- [@mmaurogg](https://github.com/mmaurogg)
+- [@mateog147](https://github.com/mateog147)
+- [@millergallegof](https://github.com/millergallegof)
+- [@Juan9507](https://github.com/Juan9507)
+- [@duvanleal96](https://github.com/duvanleal96)
+- [@felipemarin93](https://github.com/felipemarin93)
+- [@OscarGabriel07](https://github.com/OscarGabriel07)
 
 # Proyecto Base Implementando Clean Architecture
 
