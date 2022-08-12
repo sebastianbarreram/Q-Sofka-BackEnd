@@ -55,7 +55,7 @@ public class RecuperarContrasenaUseCase {
             message.setFrom(new InternetAddress("memelopersteam@gmail.com"));
             message.setRecipients(
                 Message.RecipientType.TO, InternetAddress.parse(usuario.getCorreo()));
-            message.setSubject("Mail Subject"); //Asunto del correo
+            message.setSubject("Recuperación de contraseña");
             
             // String msg = "This is my first email using JavaMailer";
             String msg = "<h2>Su nueva contraseña es:</h2><h1>"+password+"</h1>"; //Cuerpo del correo
