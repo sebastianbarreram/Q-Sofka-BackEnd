@@ -50,7 +50,7 @@ public class GenerarCodigoUseCase {
             message.setFrom(new InternetAddress("memelopersteam@gmail.com"));
             message.setRecipients(
                 Message.RecipientType.TO, InternetAddress.parse(aspirante.getCorreo()));
-            message.setSubject("Mail Subject");
+            message.setSubject("Código de verificación");
             
             // String msg = "This is my first email using JavaMailer";
             String msg = "<h2>Su código de verificación para presentar la prueba es:</h2><h1>"+codigo+"</h1>";

@@ -1,7 +1,9 @@
-package co.com.qsofkau.usecase.aspirante.generarCodigo;
+package co.com.qsofkau.usecase.aspirante.enviarcorreoaspirante;
 
 import co.com.qsofkau.model.aspirante.Aspirante;
+import co.com.qsofkau.model.aspirante.Mensaje;
 import co.com.qsofkau.model.aspirante.gateways.AspiranteRepository;
+import co.com.qsofkau.model.usuario.Usuario;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,21 +17,27 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class GenerarCodigoUseCaseTest {
+class EnviarCorreoAspiranteUseCaseTest {
+
     @InjectMocks
-    GenerarCodigoUseCase useCase;
+    EnviarCorreoAspiranteUseCase useCase;
 
     @Mock
     AspiranteRepository repository;
     @Test
-    void generarCodigo() {
+    void enviarCorreoTest() {
         Aspirante aspirante = new Aspirante("1","juan","duvanleal65@gmail.com",1,0,0,"555-hhh","555-hhh");
+        Mensaje mensaje = new Mensaje("duvan",75,"paso la prueba");
 
+
+        when(repository.findById(Mockito.any(String.class))).thenReturn(Mono.just(aspirante));
         when(repository.save(Mockito.any(Aspirante.class))).thenReturn(Mono.just(aspirante));
 
-        StepVerifier.create(useCase.generarCodigo(aspirante))
+
+        StepVerifier.create(useCase.enviarCorreo(aspirante.getId(),mensaje))
                 .expectNext(aspirante)
                 .expectComplete()
                 .verify();
+
     }
 }
